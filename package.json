@@ -26,7 +26,8 @@
     "lodash": "4.17.4",
     "moment": "2.29.4",
     "mongoose": "5.0.0",
-    "jsonwebtoken": "8.1.0"
+    "jsonwebtoken": "8.1.0",
+    "validator": "13.11.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",
