@@ -18,10 +18,10 @@ jobs:
   build-publish-docker:
     runs-on: ubuntu-latest
     env:
-      DOCKER_REPO: <SET YOUR DOCKER VIRTUAL/LOCAL/REMOTE REPO HERE>
-      IMAGE_NAME: myApp
+      DOCKER_REPO: ${{ vars.DOCKER_REPO }}
+      IMAGE_NAME: user-management-service
       JF_URL: https://${{ vars.JF_URL }}/
-      NPM_VIRTUAL_REPO: <SET YOUR NPM VIRTUAL/LOCAL/REMOTE REPO HERE>
+      NPM_VIRTUAL_REPO: ${{ vars.NPM_VIRTUAL_REPO }}
       DOCKER_BUILD_SUMMARY: false
       DOCKER_BUILD_RECORD_UPLOAD: false
       JFROG_CLI_LOG_LEVEL: DEBUG
