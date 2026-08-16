@@ -42,8 +42,10 @@ jobs:
       run: jf npm-config --global=true --repo-resolve=${{ vars.NPM_VIRTUAL_REPO }} --repo-deploy=${{ vars.NPM_VIRTUAL_REPO }}
 
     - name: build webapp
+      # npm install, not ci: upstream ships no package-lock.json, and the
+      # image's node:14 npm 6 could not read a modern lockfile anyway
       run: |
-         jf npm ci
+         jf npm install
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
