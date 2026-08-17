@@ -47,10 +47,16 @@ line in the Dockerfile (a supported base image), not application work.
   `package.json`.
 - **Why it is applicable here:** inefficient regex in moment's RFC 2822
   date-string preprocessing allows crafted strings to consume CPU
-  quadratically. `moment` is imported and invoked in `src/index.js` on every
-  request (logging middleware, health endpoint, auth endpoint), so the
-  vulnerable library code is loaded and reachable in this image.
+  quadratically, so the attack surface is any call that parses a string.
+  The scanner found exactly that: `moment(user.updatedAt || user.createdAt)`
+  and `moment(user.createdAt)` in `src/utils/helpers.js` (lines 125-134),
+  where user-record fields flow into the vulnerable parser. The many
+  argument-less `moment()` calls in `src/index.js` (logging, health, auth)
+  load the library but parse nothing, so they are not the attack surface.
 - **Fix version:** moment 2.29.4 (same major version, API compatible).
+- **Severity note:** counted as High per NVD/CVSS (7.5), consistent with the
+  table above; JFrog Research rates its contextual severity Medium because
+  the exploitation preconditions are narrow.
 
 ![CVE-2022-31129 applicability evidence](screenshots/cve-2022-31129-evidence.png)
 
