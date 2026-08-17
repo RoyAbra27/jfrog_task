@@ -2,6 +2,15 @@
 
 A simple Node.js API service for managing users. This service provides basic CRUD operations for user management with REST endpoints.
 
+## Security analysis (assignment fork - start here)
+
+This fork adds a full Xray security pass over the service; the deliverables live in [docs/](docs/):
+
+- [FINDINGS.md](docs/FINDINGS.md) - baseline scan results and the 2 applicable app-level High CVEs, with evidence
+- [CONTEXTUAL-ANALYSIS.md](docs/CONTEXTUAL-ANALYSIS.md) - what contextual analysis is and how it reshaped prioritization
+- [REMEDIATION.md](docs/REMEDIATION.md) - the fix (moment CVE-2022-31129), verified gone on rescan
+- [BUILD-PUBLISH.md](docs/BUILD-PUBLISH.md) - the OIDC-authenticated build/publish workflow and its green run
+
 ## Features
 
 - User CRUD operations (Create, Read, Update, Delete)
